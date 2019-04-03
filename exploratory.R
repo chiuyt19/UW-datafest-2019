@@ -1,5 +1,5 @@
 # Exploring "big" US Census data
-# Your name here
+# Cindy Chiu 
 # 4/3/2019
 
 
