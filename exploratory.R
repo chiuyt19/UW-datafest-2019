@@ -9,8 +9,8 @@ library(data.table)
 
 
 # Memory limit, CPUs
-memory.limit()
-memory.limit(16000)
+#memory.limit()
+#memory.limit(16000)
 
 
 # Import Data
@@ -18,9 +18,9 @@ repo_url <- 'https://archive.ics.uci.edu/ml/machine-learning-databases/census199
 data_str <- 'USCensus1990.data.txt'
 data_raw_str <- 'USCensus1990raw.data.txt'
 
-## Read with readr
+## Read with readr 
 t1 <- Sys.time()
-if (!exists(data_str)) {
+if (!exists("census")) {
   census <- str_c(repo_url, data_str) %>% read_csv()
 }
 t2 <- Sys.time()
@@ -61,7 +61,7 @@ write_csv(census_raw, 'C:/Users/Sheridongle/Desktop/census_raw.csv')
 
 # Data.table, fread, sorting
 t7 <- Sys.time()
-census <- fread(str_c(repo_url, data_str))
+census_new <- fread(str_c(repo_url, data_str))
 t8 <- Sys.time()
 cat('Prepared data read time with data.table:', t8-t7, 'seconds')
 
@@ -106,6 +106,7 @@ job_data_long %>%
   group_by(candidate_id) %>%
   summarize(avg_score = mean(score)) %>%
   select(avg_score) %>% qqnorm()  # tibbles are lists of tibbles; data.frames are lists of vectors
+# qqnorm is the basic R, so it can only work with data frames and vectors
 
 job_data_long %>% 
   group_by(candidate_id) %>%
